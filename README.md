@@ -1,64 +1,74 @@
-🍕 Pedido Manager
-Sistema web para gerenciamento de pedidos de uma pizzaria. O projeto
-reúne recursos para clientes, administração, cozinha e acompanhamento de
-entregas.
-Status: em desenvolvimento contínuo.
+# 🍕 Pedido Manager
 
-Sobre o projeto
-O Pedido Manager é uma aplicação Full Stack com frontend em React e
-TypeScript, backend em Python com FastAPI e banco de dados PostgreSQL. O
-PostgreSQL é hospedado no Supabase, e o frontend pode ser publicado na
-Vercel.
+> Sistema web Full Stack para gerenciamento e automação de pedidos de uma pizzaria.
 
-O objetivo é centralizar o fluxo de pedidos, desde a criação até a
-preparação e entrega.
-Funcionalidades
-Conta e acesso
-- Cadastro e login de usuários.
-- Autenticação por token Bearer.
-- Proteção de rotas.
-- Diferenciação entre usuários comuns e administradores.
-Pedidos
-- Criação e visualização de pedidos.
-- Seleção de produtos, sabores, tamanhos e quantidades.
-- Exibição dos itens e valores.
-- Acompanhamento do status.
-- Inclusão de endereço de entrega.
-- Consulta de CEP com a API ViaCEP para auxiliar o preenchimento do
-  endereço.
-Pagamento e cancelamento
-- Opções de forma de pagamento, como PIX, cartão e dinheiro.
-- Fluxos de finalização e cancelamento.
-- Regra de multa de cancelamento após o prazo de tolerância
-  configurado.
-A exibição de formas de pagamento não significa necessariamente que
-exista integração com bancos ou processamento automático de
-pagamentos.
+O **Pedido Manager** é uma aplicação completa projetada para centralizar todo o fluxo de pedidos de uma pizzaria, reunindo recursos dedicados para clientes, painel de administração, tela operacional da cozinha e acompanhamento logístico de entregas. O projeto separa totalmente as responsabilidades entre o front-end e o back-end, operando de forma 100% integrada.
 
-Administração e cozinha
-- Consulta administrativa dos pedidos.
-- Visualização dos itens de cada pedido.
-- Área da cozinha para acompanhar a produção.
-- Acompanhamento de pedidos prontos.
-Entrega
-- Listagem de pedidos em entrega.
-- Visualização do endereço.
-- Confirmação de entrega por código.
-Painel e histórico
-- Dashboard com informações operacionais.
-- Histórico de pedidos.
-- Área de perfil do usuário.
-Tecnologias
-Frontend - React - TypeScript - Vite - Tailwind CSS - React Router -
-Lucide React
+**Status:** Em desenvolvimento contínuo 🚀
 
-Backend - Python - FastAPI - SQLAlchemy - Alembic - PostgreSQL
+---
 
-Serviços - Supabase --- hospedagem do PostgreSQL. - Vercel ---
-publicação do frontend. - ViaCEP --- consulta de CEP.
-Arquitetura e organização
-O frontend e o backend são projetos separados. A estrutura conhecida
-inclui:
+## 🚀 Demonstração e Publicação
+
+- **Hospedagem do Front-end:** Publicado na Vercel.
+- **Banco de Dados:** PostgreSQL hospedado e gerenciado via Supabase.
+
+---
+
+## 🎯 Funcionalidades Principais
+
+### 🔒 Conta e Acesso
+- **Autenticação Segura:** Cadastro e login de usuários com autenticação por token Bearer (JWT).
+- **Proteção de Rotas:** Bloqueio de acessos não autorizados nas rotas da aplicação.
+- **Níveis de Acesso (RBAC):** Diferenciação clara de permissões entre usuários comuns (clientes) e administradores/funcionários.
+
+### 📝 Fluxo de Pedidos
+- **Criação Interativa:** Seleção dinâmica de produtos, sabores, tamanhos e quantidades.
+- **Checkout Clara:** Exibição detalhada dos itens selecionados, valores parciais e cálculo total do pedido.
+- **Acompanhamento de Status:** Atualização em tempo real do progresso do pedido para o cliente.
+- **Logística:** Inclusão e associação do endereço de entrega ao pedido realizado.
+
+### 💳 Pagamento e Cancelamento
+- **Opções de Checkout:** Suporte visual para seleção de formas de pagamento (PIX, Cartão e Dinheiro).
+- **Regras de Negócio Avançadas:** Fluxo de cancelamento automatizado com aplicação de regra de multa caso o prazo de tolerância configurado seja ultrapassado.
+  - *Nota: A exibição de formas de pagamento representa a escolha do usuário e não necessariamente uma integração direta com gateways de pagamento bancário.*
+
+### 🍳 Administração e Cozinha
+- **Gestão Operacional:** Painel administrativo dedicado para consulta e triagem de todos os pedidos ativos.
+- **Monitor da Cozinha:** Área exclusiva de produção para os pizzaiolos visualizarem os itens de cada pedido e marcarem a conclusão dos preparos.
+
+### 🛵 Módulo de Entrega
+- **Painel do Entregador:** Listagem inteligente dos pedidos prontos despachados para rota.
+- **Segurança na Entrega:** Sistema de confirmação de entrega concluída mediante inserção de código de validação.
+
+### 📊 Painel e Histórico
+- **Dashboard Operacional:** Painel com métricas e informações rápidas sobre o andamento diário da pizzaria.
+- **Histórico de Pedidos:** Acesso a todas as compras anteriores do cliente e área de edição do perfil do usuário.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Front-end
+- **React** & **TypeScript**
+- **Vite** (Build Tool de alto desempenho)
+- **Tailwind CSS** (Estilização utilitária e responsiva)
+- **React Router** (Gerenciamento de rotas SPA)
+- **Lucide React** (Pacote de ícones modernos)
+
+### Back-end
+- **Python** & **FastAPI**
+- **SQLAlchemy** (ORM para mapeamento de dados)
+- **Alembic** (Gerenciador de migrações de banco de dados)
+- **PostgreSQL** (Banco de dados relacional robusto)
+
+---
+
+## 🏗️ Arquitetura e Organização
+
+O front-end e o back-end rodam em ambientes totalmente isolados um do outro. A árvore abaixo exemplifica a distribuição estrutural das pastas do repositório:
+
+```text
 pedido-manager/
 ├── frontend/
 │   └── src/
@@ -72,116 +82,114 @@ pedido-manager/
     ├── order_router.py
     ├── produto_router.py
     ├── classes.py
-    ├── dependecies.py
+    ├── dependencies.py
     └── ...
-A estrutura é ilustrativa; outros arquivos e pastas podem existir no
-repositório.
-Como executar localmente
-Pré-requisitos
-- Node.js e npm.
-- Python 3.
-- PostgreSQL local ou projeto no Supabase.
-- Git.
-1. Clonar o repositório
+```
+
+---
+
+## ⚙️ Como Executar o Projeto Localmente
+
+### Pré-requisitos
+- **Node.js** e gerenciador **npm** instalados.
+- **Python 3.10+** configurado no sistema.
+- Instância do **PostgreSQL** (local ou remota via Supabase).
+- Cliente **Git** ativo.
+
+### 1. Clonar o Repositório
+```bash
 git clone URL_DO_SEU_REPOSITORIO
 cd NOME_DO_REPOSITORIO
-Substitua os valores de exemplo pelo endereço e nome reais do seu
-repositório.
-2. Preparar o backend
+```
+
+### 2. Configurar e Iniciar o Back-end
+```bash
 cd back-end
 python -m venv venv
-No Windows, ative o ambiente:
+```
+- No Windows, ative o ambiente virtual com:
+```bash
 venv\Scripts\activate
-Instale as dependências, caso exista requirements.txt:
+```
+- Instale as dependências contidas no arquivo do projeto:
+```bash
 pip install -r requirements.txt
-Crie um arquivo .env na pasta do backend:
+```
+- Crie um arquivo chamado `.env` na raiz da pasta `back-end/` e adicione sua string de conexão:
+```env
 DATABASE_URL=sua_url_de_conexao_postgresql
-Aplique as migrações do Alembic:
+```
+- Aplique as migrações do banco de dados para estruturar o PostgreSQL:
+```bash
 alembic upgrade head
-Inicie a API, considerando que a instância FastAPI esteja definida como
-app em main.py:
+```
+- Inicie o servidor assíncrono da API FastAPI:
+```bash
 uvicorn main:app --reload
-A documentação interativa costuma ficar disponível em
-http://127.0.0.1:8000/docs, se estiver habilitada.
-3. Preparar o frontend
-Em outro terminal:
+```
+A documentação interativa e gerada automaticamente pelo Swagger ficará ativa no endereço: `http://127.0.0.1:8000/docs`.
+
+### 3. Configurar e Iniciar o Front-end
+Abra um terminal paralelo e execute os seguintes comandos:
+```bash
 cd frontend
 npm install
-Crie um arquivo .env na pasta do frontend:
+```
+- Crie um arquivo chamado `.env` na raiz da pasta `frontend/` informando a rota da API:
+```env
 VITE_API_URL=http://127.0.0.1:8000
-Inicie o Vite:
+```
+- Execute o servidor de desenvolvimento do Vite:
+```bash
 npm run dev
-O terminal informará o endereço local da aplicação.
-Os comandos consideram uma configuração padrão de Vite, FastAPI e
-Alembic. Se o package.json, o arquivo de dependências ou os módulos
-do seu projeto tiverem nomes diferentes, siga a configuração real do
-repositório.
+```
+O console exibirá o endereço `localhost` correto gerado para você acessar o site no navegador.
 
-Variáveis de ambiente
-  Variável         Local      Finalidade
-  DATABASE_URL   Backend    Conexão com o PostgreSQL
-VITE_API_URL   Frontend   Endereço base da API
-Segurança
-- Não envie arquivos .env para o GitHub.
-- Não coloque senhas, tokens ou chaves privadas no código.
-- Configure as variáveis também no serviço de hospedagem.
-- Variáveis VITE_ são expostas ao navegador; nunca coloque segredos
-  nelas.
-Publicação
-Frontend na Vercel
-1. Importe o repositório do GitHub.
-2. Configure o diretório do frontend como raiz do projeto, se
-   necessário.
-3. Defina VITE_API_URL com a URL pública do backend.
-4. Execute o deploy.
-Banco no Supabase
-1. Crie ou selecione um projeto Supabase.
-2. Obtenha a URL de conexão PostgreSQL.
-3. Configure DATABASE_URL no ambiente do backend.
-4. Execute as migrações do Alembic.
-O backend também precisa estar hospedado em um serviço que execute
-Python/FastAPI e configurado para aceitar requisições do domínio do
-frontend.
-Fluxo geral de um pedido
-1. O cliente acessa sua conta.
-2. Cria um pedido e seleciona produtos e opções.
-3. Informa o endereço de entrega.
-4. Segue para a etapa de pagamento.
-5. A equipe acompanha o pedido pela administração e pela cozinha.
-6. O pedido avança pelos status implementados no sistema.
-7. A entrega pode ser confirmada por código.
-Os status e as regras finais dependem da implementação atual do backend.
-Banco de dados e migrações
-O projeto utiliza PostgreSQL com Alembic para versionar alterações no
-esquema do banco.
+---
 
-Aplicar migrações:
-alembic upgrade head
-Consultar a revisão atual:
-alembic current
-Mantenha os arquivos de migração no controle de versão para reproduzir a
-estrutura do banco em outros ambientes.
-Contribuição
-Sugestões e melhorias são bem-vindas.
-1. Faça um fork.
-2. Crie uma branch:
-git checkout -b minha-melhoria
-3. Faça e teste suas alterações.
-4. Registre um commit:
-git commit -m "Descreve a melhoria"
-5. Envie a branch:
-git push origin minha-melhoria
-6. Abra um Pull Request explicando as mudanças.
-Próximas melhorias
-Ideias de evolução --- não representam necessariamente funcionalidades
-já concluídas: - Aprimorar o carrinho. - Revisar e completar o fluxo de
-endereço. - Evoluir o acompanhamento da entrega. - Melhorar o histórico
-de pedidos. - Ampliar os indicadores do dashboard. - Adicionar testes
-automatizados.
-🤖 Uso de Inteligência Artificial
-Durante o desenvolvimento deste projeto, foram utilizadas ferramentas de Inteligência Artificial como apoio na criação, organização e correção de partes do frontend.
+## 🔑 Variáveis de Ambiente
 
-As sugestões geradas foram analisadas, adaptadas e integradas ao projeto durante o desenvolvimento.
-Autor
-Desenvolvido por Carlos Eduardo.
-⭐ Se gostou do projeto, considere deixar uma estrela no repositório.
+| Variável | Escopo | Finalidade |
+| :--- | :--- | :--- |
+| `DATABASE_URL` | Backend | String de autenticação e conexão com o banco PostgreSQL |
+| `VITE_API_URL` | Frontend | Endereço HTTP base para comunicação com as rotas da API |
+
+> ⚠️ **Segurança Importante:** Nunca commite ou envie os arquivos `.env` para repositórios públicos. Adicione-os sempre ao arquivo `.gitignore`. Variáveis iniciadas com o prefixo `VITE_` ficam visíveis ao navegador, portanto, nunca insira chaves ou segredos privados nelas.
+
+---
+
+## 🗄️ Banco de Dados e Migrações
+
+Todas as alterações estruturais nas tabelas do banco de dados PostgreSQL são controladas pelo **Alembic**.
+
+- Para aplicar novas migrações pendentes:
+  ```bash
+  alembic upgrade head
+  ```
+- Para verificar a versão de revisão atual do seu banco:
+  ```bash
+  alembic current
+  ```
+
+---
+
+## 🤖 Uso de Inteligência Artificial
+
+Durante o desenvolvimento deste projeto, foram utilizadas ferramentas de Inteligência Artificial como apoio focado na criação, organização estrutural e correções pontuais da interface do front-end. Todas as sugestões geradas pelas ferramentas foram criticamente analisadas, adaptadas e refinadas manualmente para garantir a aderência às regras de negócio propostas na API.
+
+---
+
+## 🔮 Próximas Melhorias (Roadmap de Evolução)
+
+- [ ] Implementação de Testes Automatizados no Back-end com `pytest`.
+- [ ] Aprimoramento da persistência e lógica do carrinho de compras.
+- [ ] Ampliação de indicadores visuais e gráficos no Dashboard administrativo.
+- [ ] Refinamento e polimento na listagem do histórico de pedidos do usuário.
+
+---
+
+## 👤 Autor
+
+Desenvolvido por **Carlos Eduardo**.
+
+⭐ *Se você achou este projeto interessante ou útil para os seus estudos, considere deixar uma estrela no repositório!*
