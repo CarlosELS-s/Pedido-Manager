@@ -152,8 +152,6 @@ async def login(login_schema: loginSchema, session: Session = Depends(pegar_sess
             if not bcrypt_context.verify(login_schema.senha, usuario.senha):
                 raise HTTPException(status_code=400, detail="Senha do administrador incorreta.")
 
-        gerar_codigo_email_login(usuario)
-
         return {
             "verificacao_necessaria": True,
             "tipo_verificacao": "email",
@@ -378,29 +376,23 @@ async def verificar_email(id_usuario: int, codigo_schema: CodigoEmailSchema, ses
     return {"mensagem": "E-mail verificado com sucesso.", "email": usuario.email, "email_verificado": True}
 
 @auth_router.post("/verificar-login-email/{usuario_id}")
-async def verificar_login_email(usuario_id: int, codigo_schema: CodigoEmailSchema, session: Session = Depends(pegar_sessao)):
-    usuario = session.query(Usuario).filter(Usuario.id == usuario_id).first()
+async def verificar_login_email(
+    usuario_id: int,
+    codigo_schema: CodigoEmailSchema,
+    session: Session = Depends(pegar_sessao)
+):
+    usuario = session.query(Usuario).filter(
+        Usuario.id == usuario_id
+    ).first()
 
     if not usuario:
-        raise HTTPException(status_code=404, detail="Usuário não encontrado.")
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado."
+        )
 
-    #dados = codigos_login_email.get(usuario_id)
-
-    #if not dados:
-        raise HTTPException(status_code=400, detail="Nenhum código de login foi solicitado.")
-
-    #if datetime.now() > dados["expira"]:
-     #   codigos_login_email.pop(usuario_id, None)
-      #  raise HTTPException(status_code=400, detail="O código expirou.")
-
-    codigo_informado = str(codigo_schema.codigo).strip()
-
-    #if codigo_informado != dados["codigo"]:
-     #   raise HTTPException(status_code=400, detail="Código incorreto.")
-
-    #codigos_login_email.pop(usuario_id, None)
-    session.commit()
-
+    # Modo sem validação de código:
+    # qualquer código recebido é aceito.
     return gerar_tokens_usuario(usuario)
 
 @auth_router.post("/reenviar-codigo-login-email/{usuario_id}")

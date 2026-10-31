@@ -46,9 +46,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from auth_router import auth_router
-from order_router import order_router
-from produto_router import produto_router
+from routers.auth_router import auth_router
+from routers.order_router import order_router
+from routers.produto_router import produto_router
 
 app.include_router(auth_router)
 app.include_router(order_router)

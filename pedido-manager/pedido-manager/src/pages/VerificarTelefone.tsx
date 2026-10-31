@@ -134,7 +134,7 @@ export default function VerificarTelefone() {
 
           <p className="mt-2 text-center text-sm text-slate-500">
             {ehLoginEmail
-              ? "Digite o código de 6 dígitos enviado para seu e-mail."
+              ? "Digite qualquer código de 6 dígitos para continuar."
               : "Digite o código de 6 dígitos mostrado no terminal do FastAPI."}
           </p>
 
