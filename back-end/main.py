@@ -33,6 +33,7 @@ origins = [
     "http://127.0.0.1:5173",
     "https://fast-api-rho-six.vercel.app",
     "https://fast-dn1g8wp8r-pedido-manager.vercel.app",
+    "https://pedido-manager-three.vercel.app/"
 ]
 
 if frontend_url and frontend_url not in origins:
