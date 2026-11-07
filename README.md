@@ -1,218 +1,347 @@
+
 # 🍕 Pedido Manager
 
-> Sistema web Full Stack para gerenciamento e automação de pedidos de uma pizzaria.
+### Sistema de gerenciamento de pedidos para pizzarias
 
-O **Pedido Manager** é uma aplicação completa projetada para centralizar todo o fluxo de pedidos de uma pizzaria, reunindo recursos dedicados para clientes, painel de administração, tela operacional da cozinha e acompanhamento logístico de entregas. O projeto separa totalmente as responsabilidades entre o front-end e o back-end, operando de forma 100% integrada.
+O **Pedido Manager** é uma aplicação web desenvolvida para facilitar o gerenciamento de pedidos de uma pizzaria, permitindo acompanhar as etapas de produção, controlar entregas e administrar clientes e produtos em um único lugar.
 
-**Status:** Em desenvolvimento contínuo 🚀
-
----
-
-## 🚀 Demonstração e Publicação
-
-- **Hospedagem do Front-end:** Publicado na Vercel.
-- **Banco de Dados:** PostgreSQL hospedado e gerenciado via Supabase.
+O projeto utiliza uma arquitetura com frontend e backend separados, oferecendo uma interface moderna, responsiva e integrada a uma API.
 
 ---
 
-## 🎯 Funcionalidades Principais
+## 📸 Sobre o projeto
 
-### 🔒 Conta e Acesso
-- **Autenticação Segura:** Cadastro e login de usuários com autenticação por token Bearer (JWT).
-- **Proteção de Rotas:** Bloqueio de acessos não autorizados nas rotas da aplicação.
-- **Níveis de Acesso (RBAC):** Diferenciação clara de permissões entre usuários comuns (clientes) e administradores/funcionários.
+O Pedido Manager foi desenvolvido para digitalizar e organizar o fluxo de trabalho de uma pizzaria, desde o gerenciamento dos pedidos até o acompanhamento das entregas.
 
-### 📝 Fluxo de Pedidos
-- **Criação Interativa:** Seleção dinâmica de produtos, sabores, tamanhos e quantidades.
-- **Checkout Clara:** Exibição detalhada dos itens selecionados, valores parciais e cálculo total do pedido.
-- **Acompanhamento de Status:** Atualização em tempo real do progresso do pedido para o cliente.
-- **Logística:** Inclusão e associação do endereço de entrega ao pedido realizado.
+A aplicação possui diferentes áreas de gerenciamento, permitindo que cada etapa da operação seja acompanhada de maneira organizada.
 
-### 💳 Pagamento e Cancelamento
-- **Opções de Checkout:** Suporte visual para seleção de formas de pagamento (PIX, Cartão e Dinheiro).
-- **Regras de Negócio Avançadas:** Fluxo de cancelamento automatizado com aplicação de regra de multa caso o prazo de tolerância configurado seja ultrapassado.
-  - *Nota: A exibição de formas de pagamento representa a escolha do usuário e não necessariamente uma integração direta com gateways de pagamento bancário.*
+## 🚀 Funcionalidades
 
-### 🍳 Administração e Cozinha
-- **Gestão Operacional:** Painel administrativo dedicado para consulta e triagem de todos os pedidos ativos.
-- **Monitor da Cozinha:** Área exclusiva de produção para os pizzaiolos visualizarem os itens de cada pedido e marcarem a conclusão dos preparos.
+### 👤 Usuários e autenticação
+- Cadastro de usuários.
+- Login com autenticação por token JWT.
+- Controle de acesso às funcionalidades.
+- Identificação de usuários administradores.
+- Área de perfil do usuário.
 
-### 🛵 Módulo de Entrega
-- **Painel do Entregador:** Listagem inteligente dos pedidos prontos despachados para rota.
-- **Segurança na Entrega:** Sistema de confirmação de entrega concluída mediante inserção de código de validação.
+### 📦 Gerenciamento de pedidos
+- Criação e visualização de pedidos.
+- Consulta dos pedidos cadastrados.
+- Visualização dos itens de cada pedido.
+- Acompanhamento dos valores.
+- Cancelamento de pedidos.
+- Controle dos estados dos pedidos.
 
-### 📊 Painel e Histórico
-- **Dashboard Operacional:** Painel com métricas e informações rápidas sobre o andamento diário da pizzaria.
-- **Histórico de Pedidos:** Acesso a todas as compras anteriores do cliente e área de edição do perfil do usuário.
+### 👨‍🍳 Gerenciamento da cozinha
+- Visualização dos pedidos em produção.
+- Acompanhamento dos pedidos finalizados.
+- Atualização do status para pronto.
+
+### 🚚 Controle de entregas
+- Acompanhamento dos pedidos prontos.
+- Gerenciamento dos pedidos em entrega.
+- Confirmação de entrega por código.
+
+### 🛠️ Administração
+- Dashboard administrativo.
+- Visualização de estatísticas dos pedidos.
+- Gerenciamento de produtos.
+- Gerenciamento de usuários.
+- Acompanhamento da operação da pizzaria.
+
+### 👀 Modo demonstração
+- Acesso como visitante.
+- Visualização de telas administrativas.
+- Exibição de dados fictícios.
+- Navegação em modo somente leitura.
+- Separação entre os dados demonstrativos e os dados reais.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🧰 Tecnologias utilizadas
 
-### Front-end
-- **React** & **TypeScript**
-- **Vite** (Build Tool de alto desempenho)
-- **Tailwind CSS** (Estilização utilitária e responsiva)
-- **React Router** (Gerenciamento de rotas SPA)
-- **Lucide React** (Pacote de ícones modernos)
+### Frontend
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Lucide React
 
-### Back-end
-- **Python** & **FastAPI**
-- **SQLAlchemy** (ORM para mapeamento de dados)
-- **Alembic** (Gerenciador de migrações de banco de dados)
-- **PostgreSQL** (Banco de dados relacional robusto)
+### Backend
+- Python
+- FastAPI
+- SQLAlchemy
+- JWT (JSON Web Token)
+- Alembic
+
+### Banco de dados
+- PostgreSQL
+- Supabase
+
+### Hospedagem
+- Vercel — Frontend
+- Render — Backend
+- Supabase — Banco de dados
 
 ---
 
-## 🏗️ Arquitetura e Organização
+## 🏗️ Arquitetura do projeto
 
-O front-end e o back-end rodam em ambientes totalmente isolados um do outro. A árvore abaixo exemplifica a distribuição estrutural das pastas do repositório:
+O sistema é dividido em duas aplicações principais:
 
 ```text
-pedido-manager/
-├── frontend/
-│   └── src/
-│       ├── pages/
-│       ├── lib/
-│       └── ...
-└── back-end/
-    ├── main.py
-    ├── models.py
-    ├── auth_router.py
-    ├── order_router.py
-    ├── produto_router.py
-    ├── classes.py
-    ├── dependencies.py
-    └── ...
+Pedido-Manager/
+│
+├── back-end/
+│   ├── main.py
+│   ├── models.py
+│   ├── auth_router.py
+│   ├── order_router.py
+│   ├── produto_router.py
+│   ├── dependecies.py
+│   ├── routers/
+│   ├── alembic/
+│   └── requirements.txt
+│
+└── pedido-manager/
+    ├── src/
+    │   ├── components/
+    │   ├── context/
+    │   ├── lib/
+    │   └── pages/
+    ├── public/
+    ├── package.json
+    └── vite.config.ts
 ```
+
+*Estrutura ilustrativa: os nomes e a organização podem variar conforme a versão do repositório.*
 
 ---
 
-## ⚙️ Como Executar o Projeto Localmente
+## 💻 Como executar o projeto localmente
 
-### Pré-requisitos
-- **Node.js** e gerenciador **npm** instalados.
-- **Python 3.10+** configurado no sistema.
-- Instância do **PostgreSQL** (local ou remota via Supabase).
-- Cliente **Git** ativo.
+### 1. Pré-requisitos
 
-### 1. Clonar o Repositório
+Antes de começar, instale:
+
+- Python
+- Node.js e npm
+- Git
+- Uma instância PostgreSQL ou projeto Supabase
+
+### 2. Clonar o repositório
+
 ```bash
-git clone URL_DO_SEU_REPOSITORIO
-cd NOME_DO_REPOSITORIO
+git clone https://github.com/CarlosELS-s/Pedido-Manager.git
 ```
 
-### 2. Configurar e Iniciar o Back-end
+Entre na pasta do projeto:
+
+```bash
+cd Pedido-Manager
+```
+
+### 3. Configurar o backend
+
+Entre na pasta do backend:
+
 ```bash
 cd back-end
+```
+
+Crie um ambiente virtual:
+
+```bash
 python -m venv venv
 ```
-- No Windows, ative o ambiente virtual com:
+
+Ative o ambiente virtual no Windows:
+
 ```bash
 venv\Scripts\activate
 ```
-- Instale as dependências contidas no arquivo do projeto:
+
+Instale as dependências:
+
 ```bash
 pip install -r requirements.txt
 ```
-- Crie um arquivo chamado `.env` na raiz da pasta `back-end/` e adicione sua string de conexão:
+
+Configure as variáveis de ambiente em um arquivo `.env`:
+
 ```env
-DATABASE_URL=sua_url_de_conexao_postgresql
+DATABASE_URL=sua_url_do_postgresql
+SECRET_KEY=sua_chave_secreta
+ALGORITHM=HS256
 ```
-- Aplique as migrações do banco de dados para estruturar o PostgreSQL:
+
+**Importante:** substitua os valores de exemplo pelas configurações reais. Nunca publique senhas ou chaves secretas no GitHub.
+
+Execute as migrações do banco de dados, se necessário:
+
 ```bash
 alembic upgrade head
 ```
-- Inicie o servidor assíncrono da API FastAPI:
-```bash
-uvicorn main:app --reload
-```
-A documentação interativa e gerada automaticamente pelo Swagger ficará ativa no endereço: `http://127.0.0.1:8000/docs`.
 
-### 3. Configurar e Iniciar o Front-end
-Abra um terminal paralelo e execute os seguintes comandos:
+Inicie o servidor:
+
 ```bash
-cd frontend
+python -m uvicorn main:app --reload
+```
+
+A API ficará disponível em:
+
+```text
+http://127.0.0.1:8000
+```
+
+Documentação interativa:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### 4. Configurar o frontend
+
+Abra outro terminal e entre na pasta do frontend:
+
+```bash
+cd pedido-manager
+```
+
+Instale as dependências:
+
+```bash
 npm install
 ```
-- Crie um arquivo chamado `.env` na raiz da pasta `frontend/` informando a rota da API:
+
+Crie um arquivo `.env` na pasta do frontend:
+
 ```env
 VITE_API_URL=http://127.0.0.1:8000
 ```
-- Execute o servidor de desenvolvimento do Vite:
+
+Inicie a aplicação:
+
 ```bash
 npm run dev
 ```
-O console exibirá o endereço `localhost` correto gerado para você acessar o site no navegador.
+
+O frontend ficará disponível no endereço informado pelo Vite, normalmente:
+
+```text
+http://localhost:5173
+```
 
 ---
 
-## 🔑 Variáveis de Ambiente
+## 🌐 Deploy e hospedagem
 
-| Variável | Escopo | Finalidade |
-| :--- | :--- | :--- |
-| `DATABASE_URL` | Backend | String de autenticação e conexão com o banco PostgreSQL |
-| `VITE_API_URL` | Frontend | Endereço HTTP base para comunicação com as rotas da API |
+O projeto pode ser publicado utilizando serviços separados para frontend, backend e banco de dados.
 
-> ⚠️ **Segurança Importante:** Nunca commite ou envie os arquivos `.env` para repositórios públicos. Adicione-os sempre ao arquivo `.gitignore`. Variáveis iniciadas com o prefixo `VITE_` ficam visíveis ao navegador, portanto, nunca insira chaves ou segredos privados nelas.
+| Serviço | Plataforma |
+|---|---|
+| Frontend | Vercel |
+| Backend | Render |
+| Banco de dados | Supabase |
+
+### Configuração do frontend na Vercel
+
+Build Command:
+
+```bash
+npm run build
+```
+
+Output Directory:
+
+```text
+dist
+```
+
+Install Command:
+
+```bash
+npm install
+```
+
+Variável de ambiente:
+
+```env
+VITE_API_URL=https://SEU-BACKEND.onrender.com
+```
+
+### Configuração do backend no Render
+
+Build Command:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Command:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
+
+Configure também as variáveis de ambiente necessárias, como `DATABASE_URL`, `SECRET_KEY` e `ALGORITHM`.
 
 ---
 
-## 🗄️ Banco de Dados e Migrações
+## 🔐 Segurança
 
-Todas as alterações estruturais nas tabelas do banco de dados PostgreSQL são controladas pelo **Alembic**.
+O projeto utiliza autenticação baseada em JWT para controlar o acesso às funcionalidades protegidas.
 
-- Para aplicar novas migrações pendentes:
-  ```bash
-  alembic upgrade head
-  ```
-- Para verificar a versão de revisão atual do seu banco:
-  ```bash
-  alembic current
-  ```
+Entre os mecanismos utilizados estão:
 
----
+- Autenticação por token.
+- Verificação de permissões.
+- Separação entre usuários comuns e administradores.
+- Proteção de rotas da API.
+- Separação dos dados fictícios do modo demonstração.
 
-## 🤖 Uso de Inteligência Artificial
-
-Durante o desenvolvimento deste projeto, foram utilizadas ferramentas de Inteligência Artificial como apoio focado na criação, organização estrutural e correções pontuais da interface do front-end. Todas as sugestões geradas pelas ferramentas foram criticamente analisadas, adaptadas e refinadas manualmente para garantir a aderência às regras de negócio propostas na API.
+As credenciais e configurações privadas devem ser armazenadas em variáveis de ambiente.
 
 ---
 
-## 🔮 Próximas Melhorias (Roadmap de Evolução)
+## 📚 Documentação da API
 
-- [ ] Implementação de Testes Automatizados no Back-end com `pytest`.
-- [ ] Aprimoramento da persistência e lógica do carrinho de compras.
-- [ ] Ampliação de indicadores visuais e gráficos no Dashboard administrativo.
-- [ ] Refinamento e polimento na listagem do histórico de pedidos do usuário.
+O backend utiliza FastAPI, que disponibiliza documentação interativa automaticamente.
+
+Após iniciar o servidor, acesse:
+
+```text
+/docs
+```
+
+Nessa página é possível visualizar os endpoints e testar as requisições da API.
 
 ---
 
-## 👤 Autor
+## 🎯 Objetivo do projeto
 
-Desenvolvido por **Carlos Eduardo**.
+O objetivo do Pedido Manager é aplicar conhecimentos de desenvolvimento Full Stack na construção de uma aplicação real de gerenciamento comercial.
 
-⭐ *Se você achou este projeto interessante ou útil para os seus estudos, considere deixar uma estrela no repositório!*
+O desenvolvimento envolve integração entre frontend e backend, autenticação, persistência de dados, gerenciamento de estados, APIs REST e publicação em serviços de hospedagem.
 
+---
 
-## Login por e-mail e senha + recuperação de senha
+## 👨‍💻 Desenvolvedor
 
-O cadastro e o login agora usam somente nome, e-mail e senha. O telefone deixou de ser obrigatório. A recuperação envia um link temporário pela Gmail API; o link expira em 30 minutos e só pode ser usado uma vez.
+**Carlos Eduardo Leite da Silva**
 
-### Variáveis no Render (backend)
+Projeto desenvolvido como aplicação prática de estudos e desenvolvimento Full Stack.
 
-Configure `DATABASE_URL`, `SECRET_KEY`, `ALGORITHM=HS256`, `ACCESS_TOKEN_EXPIRE_MINUTES=30`, `FRONTEND_URL`, `GMAIL_USER`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET` e `GMAIL_REFRESH_TOKEN`. Nunca coloque esses segredos no frontend ou no GitHub.
+---
 
-No Google Cloud, habilite a Gmail API e configure o OAuth consent screen. Crie um OAuth Client ID do tipo Desktop/Web, autorize a conta remetente e gere um refresh token com o escopo `https://www.googleapis.com/auth/gmail.send`. O refresh token deve ser guardado somente nas variáveis privadas do Render. Se o app OAuth estiver em modo de teste, o refresh token pode expirar; publique/configure o consentimento de acordo com as regras da conta Google.
+## 📄 Licença
 
-### Migração do banco
+Este projeto ainda não possui uma licença de distribuição especificada.
 
-No diretório `back-end`, execute `alembic upgrade head` depois de atualizar o código. A migração permite telefone nulo e adiciona os campos usados para redefinição de senha. Faça backup do banco antes de migrar.
+---
 
-### Observação sobre contas antigas
-
-Contas antigas criadas com e-mails artificiais terminados em `@usuario.local` ou sem senha não conseguem usar o novo login até receberem um e-mail real e uma senha. Atualize esses registros no banco de forma controlada antes de retirar o login antigo.
-
-### Pagamento de multa
-
-A rota `POST /pedidos/pedido/cancelar/{id_pedido}/pagar-multa` valida a multa e registra a forma de pagamento escolhida, cancelando o pedido. Isso é apenas registro interno: não cobra cartão nem confirma uma transação PIX em um banco/adquirente. Para cobrança real, será necessário integrar um provedor de pagamentos.
+<p align="center">
+  Desenvolvido com dedicação e tecnologia. 🍕
+</p>
