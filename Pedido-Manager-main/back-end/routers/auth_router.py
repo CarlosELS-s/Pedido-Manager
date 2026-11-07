@@ -143,9 +143,12 @@ async def redefinir_senha(dados: RedefinirSenhaSchema, session: Session = Depend
         raise HTTPException(status_code=400, detail="Link inválido ou expirado. Solicite uma nova redefinição.")
 
     usuario.senha = bcrypt_context.hash(dados.senha)
+    print("TESTE HASH:", bcrypt_context.verify(dados.senha, usuario.senha))
     usuario.token_redefinicao_senha = None
     usuario.token_redefinicao_expira = None
     session.commit()
+    session.refresh(usuario)
+    print("TESTE APÓS SALVAR:", bcrypt_context.verify(dados.senha, usuario.senha))
 
     return {"message": "Senha redefinida com sucesso. Faça login com sua nova senha."}
 
